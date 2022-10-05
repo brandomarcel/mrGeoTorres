@@ -1,0 +1,58 @@
+<ion-header>
+    <ion-toolbar>
+
+    </ion-toolbar>
+</ion-header>
+
+<ion-content id="main">
+    <ion-slides class="slide-full" [options]="slideOptsOne">
+        <ion-slide>
+            <ion-card mode="ios">
+                <ion-card-header>
+                    <ion-card-title></ion-card-title>
+                </ion-card-header>
+                <ion-card-header>
+                    <ion-card-title></ion-card-title>
+                </ion-card-header>
+                <ion-card-header color="encabezado">
+                    <ion-card-title>FINALIZAR ASISTENCIA TÉCNICA </ion-card-title>
+                </ion-card-header>
+                <ion-card-content>
+                    <form #formcierre="ngForm" (ngSubmit)="cierreSubmited(formcierre)">
+                        <ion-item lines="none">
+
+                        </ion-item>
+                        <ion-item class="ion-text-center" lines="none">
+                            <ion-label><strong><h1>Ingrese el código de cierre:</h1></strong></ion-label>
+                        </ion-item>
+                        <ion-item lines="none">
+
+                        </ion-item>
+                        <ion-item lines="none">
+                            <ion-input #codigo="ngModel" maxlength="6" minlength="6" pattern="[0-9]{6,6}" class="inputcodigo" name="codigo" [(ngModel)]="cerrarasistencia.codigo" type="numberic" required placeholder="Código:"></ion-input>
+                            <ion-badge slot="end" *ngIf="formcierre.submitted && codigo.errors?.required" color="danger">*</ion-badge>
+                            <ion-badge slot="end" *ngIf="formcierre.submitted && codigo.errors?.pattern" color="danger">no válido</ion-badge>
+                        </ion-item>
+                        <ion-item class="ion-text-center" lines="none">
+                            <ion-label><strong><h1>Ingrese la cédula del socio:</h1></strong></ion-label>
+                        </ion-item>
+                        <ion-item lines="none">
+
+                        </ion-item>
+                        <ion-item lines="none">
+                            <ion-input #cedula="ngModel" maxlength="10" minlength="10" pattern="[0-9]{10,10}" class="inputcodigo" name="cedula" [(ngModel)]="cerrarasistencia.cedula" type="numberic" required placeholder="Cédula:"></ion-input>
+                            <ion-badge slot="end" *ngIf="formcierre.submitted && cedula.errors?.required" color="danger">*</ion-badge>
+                            <ion-badge slot="end" *ngIf="formcierre.submitted && cedula.errors?.pattern" color="danger">no válido</ion-badge>
+                        </ion-item>
+                        <ion-item lines="none">
+
+                        </ion-item>
+                        <ion-button shape="round" type="submit">
+                            Finalizar
+                        </ion-button>
+                    </form>
+                </ion-card-content>
+            </ion-card>
+        </ion-slide>
+    </ion-slides>
+</ion-content>

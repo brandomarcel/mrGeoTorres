@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+  </ion-toolbar>
+</ion-header>
+<ion-content id="main">
+  <ion-slides class="slide-full" [options]="slideOptsOne">
+      <ion-slide>
+          <ion-card mode="ios">
+            <ion-card-header>
+                <ion-card-title></ion-card-title>
+            </ion-card-header>
+            <ion-card-header>
+                <ion-card-title></ion-card-title>
+            </ion-card-header>
+              <ion-card-header color="encabezado">
+                  <ion-card-title>Mis Publicaciones</ion-card-title>
+              </ion-card-header>
+              <ion-card-content>
+                  <ion-list>
+                      <ion-item *ngFor="let noticia of noticias; let i = index">
+                          <ion-label>{{noticia.titulo}}</ion-label>
+                          <!-- <ion-label>{{noticia.idUsuario}}</ion-label> -->
+                          <ion-button (click)="modalDetalleAsistencia(i)" expand="block" color="success" shape="round">
+                              <ion-icon slot="end" name="list-outline"></ion-icon>
+                              Ver Detalle
+                          </ion-button>
+                      </ion-item>
+                  </ion-list>
+              </ion-card-content>
+          </ion-card>
+      </ion-slide>
+  </ion-slides>
+</ion-content>
+<ion-footer>
+</ion-footer>

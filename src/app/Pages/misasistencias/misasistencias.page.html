@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar>
+  </ion-toolbar>
+</ion-header>
+<ion-content id="main">
+  <ion-slides class="slide-full" [options]="slideOptsOne">
+      <ion-slide>
+          <ion-card mode="ios">
+              <ion-card-header >
+              </ion-card-header>
+              <ion-card-header>
+              </ion-card-header>
+              <ion-card-header color="encabezado">
+                <ion-card-title>MIS ASISTENCIAS</ion-card-title>
+            </ion-card-header>
+              <ion-card-content>
+                  <ion-list>
+                    <ion-item>
+                      <ion-label>Asistencia</ion-label>
+                      <ion-label>Estado</ion-label>
+                      <ion-label>Fecha</ion-label>
+                    </ion-item>
+                      <ion-item *ngFor="let tarea of pendientes; let i = index">
+                          <ion-label>{{tarea.asunto}}</ion-label>
+                          <ion-label>{{tarea.estado}}</ion-label>
+                          <ion-label>{{tarea.fecha}}</ion-label>
+                          <ion-icon *ngIf="tarea.estado === 'pendiente'" name="warning-outline" color="warning"></ion-icon>
+                          <ion-icon *ngIf="tarea.estado === 'ejecucion'" name="checkbox-outline" color="success"></ion-icon>
+                          <ion-button (click)="modalDetalleAsistencia(i)" expand="block" color="success" shape="round">
+                            <ion-icon name="eye-outline"></ion-icon>
+                        </ion-button>
+                      </ion-item>
+                  </ion-list>
+              </ion-card-content>
+          </ion-card>
+      </ion-slide>
+  </ion-slides>
+</ion-content>
+<ion-footer>
+</ion-footer>

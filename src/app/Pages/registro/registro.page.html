@@ -1,0 +1,124 @@
+<ion-content class="bg-class">
+    <ion-grid fixed style="height: 100%;">
+        <ion-row>
+            <ion-col size="12">
+                <form #formLogin="ngForm" (ngSubmit)="loginSubmited(formLogin)">
+                    <ion-card class="center">
+                        <ion-card-header color="encabezado" style="text-align: center;">
+                            <ion-label class="animated fadeIn fast">
+                                <h1>
+                                    <ion-icon slot="start" name="person"></ion-icon>
+                                    <strong>Datos de Registro</strong></h1>
+                            </ion-label>
+                        </ion-card-header>
+                        <ion-card-content>
+                            <ion-grid>
+                                <ion-row>
+                                    <ion-col size-md="6" size-lg="6" size-sm="12" size-xs="12">
+                                        <ion-item no-padding class="animated fadeIn fast ">
+                                            <ion-label position="floating ">
+                                                <ion-icon slot="start" name="person-add"></ion-icon>
+                                                Nombre
+                                            </ion-label>
+                                            <ion-input style="text-transform: uppercase;" #nombre="ngModel" required name="nombre" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" minlength="3" maxlength="20" [(ngModel)]="usuario.nombre" type="text"></ion-input>
+                                            <ion-badge slot="end" *ngIf="formLogin.submitted && nombre.errors?.required" color="danger">*</ion-badge>
+                                            <ion-badge slot="end" *ngIf="formLogin.submitted && (nombre.errors?.pattern||nombre.errors?.minlength)" color="danger">no válido</ion-badge>
+                                        </ion-item>
+                                        <ion-item no-padding class="animated fadeIn fast ">
+                                            <ion-label position="floating ">
+                                                <ion-icon slot="start" name="person-add"></ion-icon>
+                                                Apellido
+                                            </ion-label>
+                                            <ion-input style="text-transform: uppercase;" #apellido="ngModel" required name="apellido" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" minlength="3" maxlength="20" [(ngModel)]="usuario.apellido" type="text"></ion-input>
+                                            <ion-badge slot="end" *ngIf="formLogin.submitted && apellido.errors?.required" color="danger">*</ion-badge>
+                                            <ion-badge slot="end" *ngIf="formLogin.submitted && (apellido.errors?.pattern||apellido.errors?.minlength)" color="danger">no válido</ion-badge>
+                                        </ion-item>
+                                        <ion-item no-padding class="animated fadeIn fast ">
+                                            <ion-label position="floating ">
+                                                <ion-icon slot="start" name="mail"></ion-icon>
+                                                Correo
+                                            </ion-label>
+                                            <ion-input #email="ngModel" name="email" required pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$" [(ngModel)]="usuario.email" type="email "></ion-input>
+                                            <ion-badge slot="end" *ngIf="formLogin.submitted && email.errors?.required" color="danger">*</ion-badge>
+                                            <ion-badge slot="end" *ngIf="formLogin.submitted && email.errors?.pattern" color="danger">no Válido</ion-badge>
+                                        </ion-item>
+                                        <ion-item no-padding class="animated fadeIn fast ">
+                                            <ion-label position="floating ">
+                                                <ion-icon slot="start" name="key"></ion-icon>
+                                                Contraseña
+                                            </ion-label>
+                                            <ion-input #pass="ngModel" required name="pass" [(ngModel)]="password" type="password" minlength="6" maxlength="16"></ion-input>
+                                            <ion-badge slot="end" *ngIf="formLogin.submitted && pass.errors?.required" color="danger">*</ion-badge>
+                                            <ion-badge slot="end" *ngIf="formLogin.submitted && pass.errors?.minlength" color="danger">Caracteres mínimos 6</ion-badge>
+                                        </ion-item>
+                                        <ion-item no-padding class="animated fadeIn fast ">
+                                            <ion-label position="floating ">
+                                                <ion-icon slot="start" name="key"></ion-icon>
+                                                Confirmar Contraseña
+                                            </ion-label>
+                                            <ion-input #confirm="ngModel" required name="confirm" [(ngModel)]="confirma" type="password" minlength="6" maxlength="16"></ion-input>
+                                            <ion-badge slot="end" *ngIf="formLogin.submitted && confirm.errors?.required" color="danger">*</ion-badge>
+                                            <ion-badge slot="end" *ngIf="!confirm.errors?.required && confirma!=password" color="danger">No coinciden</ion-badge>
+                                        </ion-item>
+                                    </ion-col>
+                                    <ion-col size-md="6" size-lg="6" size-sm="12" size-xs="12">
+                                        <ion-item no-padding class="animated fadeIn fast ">
+                                            <ion-label position="floating ">
+                                                <ion-icon slot="start" name="barcode"></ion-icon>
+                                                Código
+                                            </ion-label>
+                                            <ion-input #code="ngModel" required name="code" [(ngModel)]="usuario.codigo" type="number"></ion-input>
+                                            <ion-badge slot="end" *ngIf="formLogin.submitted && code.errors?.required" color="danger">*</ion-badge>
+                                            <ion-badge slot="end" *ngIf="formLogin.submitted && code.errors?.minlength" color="danger">Caracteres mínimos 3</ion-badge>
+                                        </ion-item>
+
+                                        <ion-item no-padding class="animated fadeIn fast ">
+                                            <ion-label position="floating ">
+                                                <ion-icon slot="start" name="card"></ion-icon>
+                                                Cédula
+                                            </ion-label>
+                                            <ion-input #ci="ngModel" required name="ci" [(ngModel)]="usuario.cedula" type="text" minlength="10" maxlength="10"></ion-input>
+                                            <ion-badge slot="end" *ngIf="formLogin.submitted && ci.errors?.required" color="danger">*</ion-badge>
+                                            <ion-badge slot="end" *ngIf="formLogin.submitted && ci.errors?.minlength" color="danger">mínimo 10 caracteres</ion-badge>
+                                        </ion-item>
+                                        <ion-item no-padding lines="none" class="animated fadeIn fast ">
+                                            <ion-radio-group #genero="ngModel" required name="genero" [(ngModel)]="usuario.genero">
+                                                <ion-label position="floating ">
+                                                    <ion-icon slot="start" name="people"></ion-icon>
+                                                    Género
+                                                </ion-label>
+                                                <br>
+                                                <ion-item lines="none">
+                                                    <ion-label>Hombre</ion-label>
+                                                    <ion-radio value="H"></ion-radio>
+                                                </ion-item>
+
+                                                <ion-item lines="none">
+                                                    <ion-label>Mujer</ion-label>
+                                                    <ion-radio value="M"></ion-radio>
+                                                </ion-item>
+                                            </ion-radio-group>
+                                        </ion-item>
+                                    </ion-col>
+                                </ion-row>
+                                <ion-item lines="none">
+                                    <ion-button class="animated fadeIn fast center" shape="round " type="submit">
+                                        <ion-icon slot="start" name="log-in"></ion-icon>
+                                        Resistrarse
+                                    </ion-button>
+                                </ion-item>
+                                <ion-item lines="none">
+                                    <p tappable class="center animated fadeIn fast " routerLink="/login">
+                                        <ion-text>
+                                            <strong>Ya Tengo Cuenta</strong>
+                                        </ion-text>
+                                    </p>
+                                </ion-item>
+                            </ion-grid>
+                        </ion-card-content>
+                    </ion-card>
+                </form>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>

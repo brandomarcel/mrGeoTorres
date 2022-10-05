@@ -1,0 +1,19 @@
+<ion-menu side="start" menuId="primero" contentId="principal">
+    <ion-header>
+        <ion-toolbar>
+            <ion-title>Menú Principal</ion-title>
+        </ion-toolbar>
+    </ion-header>
+    <ion-content>
+        <ion-list>
+            <ion-menu-toggle autoHide="true">
+                <ion-item *ngFor="let item of menuOpts" [routerLink]="item.redirect">
+                    <ion-label>
+                        {{item.item}}
+                    </ion-label>
+                    <ion-icon slot="start" [name]="item.icono"></ion-icon>
+                </ion-item>
+            </ion-menu-toggle>
+        </ion-list>
+    </ion-content>
+</ion-menu>

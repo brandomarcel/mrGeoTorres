@@ -1,0 +1,7 @@
+{
+  "name": "MrGeo",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

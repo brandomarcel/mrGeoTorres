@@ -1,0 +1,65 @@
+<ion-header>
+    <ion-toolbar>
+    </ion-toolbar>
+</ion-header>
+<ion-content id="main">
+    <ion-slides class="slide-full" [options]="slideOptsOne">
+        <ion-slide>
+            <ion-card mode="ios">
+                <ion-card-header color="encabezado">
+                    <ion-card-title>PERFIL DEL USUARIO</ion-card-title>
+                </ion-card-header>
+                <ion-card-content>
+                    <form #formedit="ngForm" (ngSubmit)="editSubmited(formedit)">
+                        <ion-item>
+                            <ion-icon slot="end" name="create"></ion-icon>
+                            <label>Editar</label>
+                            <ion-toggle slot="end" #toogle="ngModel" name="toogle" [(ngModel)]="editar"></ion-toggle>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label position="floating">Nombre:</ion-label>
+                            <ion-input [disabled]="!editar" style="text-transform: uppercase;" #nombre="ngModel" minlength="3" maxlength="10" required pattern="[A-Za-z]+" name="nombre" [(ngModel)]="usuario.nombre" type="text" placeholder="Nombre:"></ion-input>
+                            <ion-badge slot="end" *ngIf="formedit.submitted && nombre.errors?.required" color="danger">*</ion-badge>
+                            <ion-badge slot="end" *ngIf="formedit.submitted && (nombre.errors?.pattern||(nombre.errors?.minlength && nombre.errors?.maxlength))" color="danger">no válido</ion-badge>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label position="floating">Apellido:</ion-label>
+                            <ion-input [disabled]="!editar" #apellido="ngModel" name="apellido" [(ngModel)]="usuario.apellido" minlength="3" required pattern="[A-Za-z]+" maxlength="15" type="text" placeholder="Nombre:"></ion-input>
+                            <ion-badge slot="end" *ngIf="formedit.submitted && apellido.errors?.required" color="danger">*</ion-badge>
+                            <ion-badge slot="end" *ngIf="formedit.submitted && (apellido.errors?.pattern||(apellido.errors?.minlength && nombre.errors?.maxlength))" color="danger">no válido</ion-badge>
+                        </ion-item>
+                        <ion-item>
+                            <ion-radio-group #genero="ngModel" required name="genero" [(ngModel)]="usuario.genero">
+                                <ion-label position="floating ">
+                                    <ion-icon slot="start" name="people"></ion-icon>
+                                    Género
+                                </ion-label>
+                                <br>
+                                <ion-item>
+                                    <ion-label>Hombre</ion-label>
+                                    <ion-radio [disabled]="!editar" value="H"></ion-radio>
+                                </ion-item>
+
+                                <ion-item>
+                                    <ion-label>Mujer</ion-label>
+                                    <ion-radio [disabled]="!editar" value="M"></ion-radio>
+                                </ion-item>
+                            </ion-radio-group>
+                        </ion-item>
+                        <ion-item>
+                            <ion-button [disabled]="!editar" (click)="resetpass()">
+                                <ion-icon slot="end" name="key"></ion-icon>
+                                Cambiar la contraseña
+                            </ion-button>
+                        </ion-item>
+                        <ion-button [disabled]="!editar" type="submit" shape="round">
+                            Actualizar
+                        </ion-button>
+                    </form>
+                </ion-card-content>
+            </ion-card>
+        </ion-slide>
+    </ion-slides>
+</ion-content>
+<ion-footer>
+</ion-footer>

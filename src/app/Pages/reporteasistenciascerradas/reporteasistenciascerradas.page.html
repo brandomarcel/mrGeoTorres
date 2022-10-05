@@ -1,0 +1,90 @@
+<ion-header>
+    <ion-toolbar>
+    </ion-toolbar>
+</ion-header>
+<ion-toolbar color="encabezado">
+    <ion-item>
+        <ion-icon name="calendar-outline"></ion-icon>
+        Fecha Inicio:
+        <ion-datetime displayFormat="DD-MM-YYYY" cancelText="Cancelar" doneText="Aceptar" [value]="mydate" [(ngModel)]="mydate" (ionChange)="ObtenerFecha(this.mydate)">
+
+        </ion-datetime>
+        <ion-button slot="end" [disabled]="errorfecha" (click)="buscarreporte()">
+            <ion-icon slot="end" name="search"></ion-icon>
+            Buscar
+        </ion-button>
+    </ion-item>
+
+    <ion-item>
+        <ion-icon name="calendar-outline"></ion-icon>
+        Fecha Fin:
+        <ion-datetime displayFormat="DD-MM-YYYY" cancelText="Cancelar" doneText="Aceptar" [value]="mydatefin" [(ngModel)]="mydatefin" (ionChange)="ObtenerFechaFin(this.mydatefin)">
+    
+        </ion-datetime>
+        <ion-label *ngIf="errorfecha" color="danger">
+            La fecha fin no puede ser menor que la fecha inicio
+        </ion-label>
+    </ion-item>
+
+    <ion-segment scrollable value="pendiente" [(ngModel)]="parametro" (ionChange)="veropcion(this.parametro)">
+        <ion-segment-button  value="general">
+            <ion-label>
+                General
+            </ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="idUsuario">
+            <ion-label>
+                Usuarios
+            </ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="idTecnico">
+            <ion-label>
+                Tecnicos
+            </ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="barrio">
+            <ion-label>
+                Barrio
+            </ion-label>
+        </ion-segment-button>
+      </ion-segment>
+    <ion-item *ngIf="usuari || tecni || barr">
+        <ion-searchbar *ngIf="usuari || tecni"  inputmode="numeric" placeholder="Cédula" name="busca" #busca="ngModel" [(ngModel)]="buscando"></ion-searchbar>
+        <ion-label *ngIf="barr">Seleccione un Barrio</ion-label>
+        <ion-select *ngIf="barr" name="barrios" [(ngModel)]="buscando">
+          <ion-select-option value="Estacion">La Estación</ion-select-option>
+          <ion-select-option value="Moya">La Moya</ion-select-option>
+          <ion-select-option value="SanLuis">San Luis</ion-select-option>
+          <ion-select-option value="CulalaAlto">Culala Alto</ion-select-option>
+          <ion-select-option value="CulalaAlto">Culala Bajo</ion-select-option>
+          <ion-select-option value="SanRoque">San Roque</ion-select-option>
+          <ion-select-option value="Falcon">El Falcón</ion-select-option>
+        </ion-select>
+    </ion-item>
+</ion-toolbar>
+<ion-content id="estadisticas">
+    <ion-slides class="slide-full" *ngIf="data.length === 0 " mode="ios" scrollbar="ios">
+        <ion-slide>
+            <ion-img class="center" src="/assets/Imagenes/reporte.png"></ion-img>
+        </ion-slide>
+    </ion-slides>
+    <ngx-datatable id="prin" *ngIf="data.length != 0 " 
+    [rows]="data"
+    [ngClass]="tablestyle" 
+    [rowHeight]="'auto'" 
+    [headerHeight]="50"
+    [columns]="columns"
+    [summaryRow]="enableSummary"
+    [summaryPosition]="summaryPosition"
+    [summaryHeight]="70"
+    [limit]="5"
+    [footerHeight]="50"
+    [columnMode]="'force'">
+    </ngx-datatable>
+    <canvas *ngIf="datos.length != 0 " #barChart></canvas>
+</ion-content>
+<ion-fab *ngIf="data.length != 0 " vertical="bottom" horizontal="end" (click)="GenerarReporte()" slot="fixed">
+    <ion-fab-button color="dark">
+        <ion-icon name="download"></ion-icon>
+    </ion-fab-button>
+</ion-fab>

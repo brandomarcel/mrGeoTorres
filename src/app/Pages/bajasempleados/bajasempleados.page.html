@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar>
+  </ion-toolbar>
+</ion-header>
+<ion-content id="main">
+  <ion-slides class="slide-full" [options]="slideOptsOne">
+      <ion-slide>
+          <ion-card mode="ios">
+              <ion-card-header>
+                  <ion-card-title></ion-card-title>
+              </ion-card-header>
+              <ion-card-header>
+                  <ion-card-title></ion-card-title>
+              </ion-card-header>
+              <ion-card-header color="encabezado">
+                  <ion-card-title>LISTADO DE EMPLEADOS</ion-card-title>
+              </ion-card-header>
+              <ion-card-content>
+                <ion-searchbar  (ionChange)="buscartecnico($event)"></ion-searchbar>
+                  <ion-list>
+                      <ion-item>
+                          <ion-label>Nombre</ion-label>
+                          <ion-label>Apellido</ion-label>
+                          <ion-label>Cédula</ion-label>
+                          <ion-label>Tipo</ion-label>
+                      </ion-item>
+                      <ion-item *ngFor="let te of tecnicos | filtro: textobuscar: 'nombre'; let i = index">
+                          <ion-label>{{te.nombre}}</ion-label>
+                          <ion-label>{{te.apellido}}</ion-label>
+                          <ion-label>{{te.cedula}}</ion-label>
+                          <ion-icon *ngIf="te.rol.includes('O')" name="desktop-outline"></ion-icon>
+                          <ion-icon *ngIf="te.rol.includes('T')" name="hammer-outline"></ion-icon>
+                          <ion-icon *ngIf="te.rol.includes('A')" name="ribbon-outline"></ion-icon>
+                          <ion-button (click)="seleccionarTecnico(i)" expand="block" color="danger" shape="round">
+                              Dar de Baja
+                              <ion-icon name="trash-outline"></ion-icon>
+                          </ion-button>
+                      </ion-item>
+                  </ion-list>
+              </ion-card-content>
+          </ion-card>
+      </ion-slide>
+  </ion-slides>
+</ion-content>
+<ion-footer>
+</ion-footer>

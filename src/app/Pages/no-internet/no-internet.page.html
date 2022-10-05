@@ -1,0 +1,16 @@
+<ion-content>
+    <ion-slides class="slide-full" [options]="slideOptsOne">
+        <ion-slide *ngFor="let slide of slides">
+            <ion-card mode="ios">
+                <img [src]="slide.img" class="slide-image">
+                <ion-card-header>
+                    <ion-card-title>{{ slide.titulo }}</ion-card-title>
+                </ion-card-header>
+                <ion-card-content>{{ slide.desc }}</ion-card-content>
+                <ion-button (click)="goHome()" expand="block" fill="clear" shape="round">
+                    Aceptar
+                </ion-button>
+            </ion-card>
+        </ion-slide>
+    </ion-slides>
+</ion-content>

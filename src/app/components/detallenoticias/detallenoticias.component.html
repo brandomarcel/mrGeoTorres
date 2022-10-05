@@ -1,0 +1,27 @@
+<ion-header>
+    <ion-toolbar color="encabezado">
+        <ion-title>Detalle de la Noticia</ion-title>
+        <ion-button (click)="cerradmodal()" color="dark" fill="clear" slot="end">
+            <ion-icon slot="start" name="close-outline"></ion-icon>
+        </ion-button>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <ion-card>
+        <ion-card-header>
+            <ion-card-title>{{noticia.titulo}}</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-item lines="none">
+            <ion-img class="noticia" [src]="noticia.imagen"></ion-img>
+        </ion-item>
+      <ion-label>{{noticia.contenido}}</ion-label>
+        </ion-card-content>
+    </ion-card>
+</ion-content>
+<ion-button color="danger" (click)="eliminarNoticia()" >Eliminar 
+  <ion-icon name="trash-bin"></ion-icon>
+</ion-button>
+<!-- <ion-button color="secondary">Editar 
+    <ion-icon name="create"></ion-icon>
+  </ion-button> -->

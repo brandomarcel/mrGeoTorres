@@ -1,0 +1,59 @@
+<ion-header>
+    <ion-toolbar>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content id="main">
+    <ion-slides class="slide-full" [options]="slideOptsOne">
+        <ion-slide>
+            <ion-card mode="ios">
+                <ion-card-header>
+                    <ion-card-title></ion-card-title>
+                </ion-card-header>
+                <ion-card-header>
+                    <ion-card-title></ion-card-title>
+                </ion-card-header>
+                <ion-card-header color="encabezado">
+                    <ion-card-title>Ingreso de Planillas </ion-card-title>
+                </ion-card-header>
+                <ion-card-content>
+                    <form #formplanilla="ngForm" (ngSubmit)="planillaSubmited(formplanilla)">
+                        <ion-item color="medium" lines="none">
+                            <ion-label>Cédula Asociada: {{nombre}}</ion-label>
+                        </ion-item>
+                        <ion-item lines="none">
+                            <ion-label><strong><h1>Código:</h1></strong></ion-label>
+                        </ion-item>
+                        <ion-item lines="none">
+                            <ion-input #codigo="ngModel" maxlength="5" class="inputcodigo" pattern="[0-9]{3,5}" name="codigo" [(ngModel)]="valorplanilla.codigo" type="numberic" required placeholder="Código:"></ion-input>
+                            <ion-badge slot="end" *ngIf="formplanilla.submitted && codigo.errors?.required" color="danger">*</ion-badge>
+                            <ion-badge slot="end" *ngIf="formplanilla.submitted && codigo.errors?.pattern" color="danger">no válido</ion-badge>
+                            <ion-button (click)="ValidarCode()" shape="round">
+                                Validar
+                            </ion-button>
+                        </ion-item>
+                        <ion-item lines="none">
+                            <ion-label><strong><h1>Valor:</h1></strong></ion-label>
+                        </ion-item>
+                        
+                        <ion-item lines="none">
+                            
+                            <ion-input #valor="ngModel" maxlength="4" pattern="[0-9]{1,4}" class="valorentero" name="valor" [(ngModel)]="entero" type="numeric" required placeholder="000"></ion-input>
+                            <ion-label class="coma"> <strong> , </strong> </ion-label>
+                            <ion-input #decimal="ngModel" maxlength="2" minlength="2" class="valordecimal" pattern="[0-9]{2,2}" name="decimal" [(ngModel)]="decimalcadena" type="numeric" required placeholder="00"></ion-input>
+                            <ion-label><strong><h1>$</h1></strong></ion-label>
+                            <ion-badge slot="end" *ngIf="formplanilla.submitted && (valor.errors?.required || decimal.errors?.required)" color="danger">*</ion-badge>
+                            <ion-badge slot="end" *ngIf="formplanilla.submitted && (valor.errors?.pattern || decimal.errors?.pattern)" color="danger">no válido</ion-badge>
+                        </ion-item>
+                        <ion-item lines="none">
+
+                        </ion-item>
+                        <ion-button [disabled]="correcto" shape="round" type="submit">
+                            Aceptar
+                        </ion-button>
+                    </form>
+                </ion-card-content>
+            </ion-card>
+        </ion-slide>
+    </ion-slides>
+</ion-content>

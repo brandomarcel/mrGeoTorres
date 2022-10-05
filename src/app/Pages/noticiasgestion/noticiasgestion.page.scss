@@ -1,0 +1,72 @@
+ion-label {
+    color: black;
+    font-style: oblique;
+}
+
+.center {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.card {
+    background: transparent
+}
+
+ion-text {
+    color: black;
+}
+
+.slide-full {
+    height: 100% !important;
+}
+
+ion-card {
+    overflow: unset !important;
+}
+
+ion-card {
+    height: 100%;
+    width: 100%;
+    margin-right: 0px;
+    margin-left: 0px;
+    box-shadow: none !important;
+}
+
+.slide-image {
+    width: 100px;
+    text-align: center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    top: -50px;
+}
+
+ion-card-header {
+    position: relative;
+    top: -50px;
+}
+
+ion-card-content {
+    position: relative;
+    top: -50px;
+}
+
+#formasistencia {
+    height: 400px;
+    overflow-y: auto
+}
+
+.noticia {
+    top: 0px;
+    height: 200px;
+    width: 200px;
+    margin-bottom: 0px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.photobutton {
+    height: 100%;
+}

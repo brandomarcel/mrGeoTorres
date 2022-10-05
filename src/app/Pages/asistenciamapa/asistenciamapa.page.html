@@ -1,0 +1,22 @@
+<ion-header>
+    <ion-toolbar>
+    </ion-toolbar>
+</ion-header>
+<ion-toolbar color="encabezado">
+    <ion-item color="encabezado" lines="none">
+        <ion-searchbar inputmode="numeric" placeholder="CI Empleado" name="busca" #busca="ngModel" [(ngModel)]="buscando"></ion-searchbar>
+        <ion-button (click)="buscarRuta()">
+            <ion-icon slot="start" name="search"></ion-icon>
+            Buscar
+        </ion-button>
+    </ion-item>
+    <ion-item color="dark">
+        <ion-icon name="calendar-outline"></ion-icon>
+        Fecha:
+        <ion-datetime displayFormat="DD-MM-YYYY" cancelText="Cancelar" doneText="Aceptar" [value]="mydate" [(ngModel)]="mydate" (ionChange)="ObtenerFecha(this.mydate)">
+
+        </ion-datetime>
+    </ion-item>
+</ion-toolbar>
+<ion-content id="mapa-empleados">
+</ion-content>

@@ -1,0 +1,31 @@
+<ion-header>
+    <ion-toolbar>
+    </ion-toolbar>
+</ion-header>
+<ion-content id="main">
+    <ion-slides class="slide-full" *ngIf="valores.length === 0 " mode="ios" scrollbar="ios">
+        <ion-slide>
+            <ion-img class="center" style="height: 50%; width: 50%;" src="/assets/Imagenes/recibo.svg"></ion-img>
+        </ion-slide>
+    </ion-slides>
+    <ion-slides *ngIf="valores.length !== 0 " class="slide-full" [options]="slideOptsOne">
+        <ion-slide>
+            <ion-card mode="ios">
+                <ion-card-header>
+                    <ion-card-title></ion-card-title>
+                </ion-card-header>
+                <ion-card-header>
+                    <ion-card-title></ion-card-title>
+                </ion-card-header>
+                <ion-card-header color="encabezado">
+                    <ion-card-title>VALORES A PAGAR </ion-card-title>
+                </ion-card-header>
+                <ion-card-content>
+                    <app-valorconsumo [valores]="valores"></app-valorconsumo>
+                </ion-card-content>
+            </ion-card>
+        </ion-slide>
+    </ion-slides>
+</ion-content>
+<ion-footer>
+</ion-footer>

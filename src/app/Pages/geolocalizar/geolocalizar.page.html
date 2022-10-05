@@ -1,0 +1,74 @@
+<ion-header>
+    <ion-toolbar>
+    </ion-toolbar>
+</ion-header>
+<ion-content id="main">
+    <ion-slides class="slide-full" [options]="slideOptsOne">
+        <ion-slide>
+            <ion-card mode="ios">
+                <ion-card-header>
+                    <ion-card-title></ion-card-title>
+                </ion-card-header>
+                <ion-card-header >
+                    <ion-card-title></ion-card-title>
+                </ion-card-header>
+                <ion-card-header color="encabezado">
+                    <ion-card-title>GEOLOCALIZACIÓN DE EMPLEADOS</ion-card-title>
+                </ion-card-header>
+                <ion-card-content>
+                    <ion-item lines="none">
+                        <img class="center" src="/assets/Imagenes/botones/mapa.svg" alt="">
+                        <img class="center" style="width: 120px; height: 120px;" src="/assets/Imagenes/botones/nogps.svg" alt="">
+                    </ion-item>
+                    <ion-item lines="none">
+                        <ion-button (click)="playGeolocalizacion()" class="center" shape="round">
+                            Geolocalizar Ahora
+                        </ion-button>
+                        <ion-button (click)="finalizarGeolocalizacion()" class="center" shape="round">
+                            Finalizar Ahora
+                        </ion-button>
+                    </ion-item>
+                    <!-- <ion-item lines="none">
+                    </ion-item>
+                    <ion-item lines="none">
+                        <img class="center" style="width: 120px; height: 120px;" src="/assets/Imagenes/botones/nogps.svg" alt="">
+                    </ion-item>
+                    <ion-item lines="none">
+                        <ion-button (click)="finalizarGeolocalizacion()" class="center" shape="round">
+                            Finalizar Ahora
+                        </ion-button>
+                    </ion-item> -->
+                    <ion-item>
+                        <ion-toolbar *ngIf="sincronizar" color="dark">
+                            <ion-label>Sincronizar {{datosSincronizar}} datos</ion-label>
+                            <ion-buttons slot="end">
+                                <ion-button (click)="sincronizarDatosFirestorage()">
+                                    <ion-icon slot="end" name="play"></ion-icon>
+                                </ion-button>
+                            </ion-buttons>
+                        </ion-toolbar>
+                    </ion-item>
+                    <ion-progress-bar color="encabezado" [value]="porcentaje">
+
+                    </ion-progress-bar>
+                    <ion-toolbar color="danger" *ngIf="web">
+                        <ion-title>Esta funcionalidad está disponible solo en dispositivos móviles</ion-title>
+                    </ion-toolbar>
+                    <!-- <ion-item>
+                        <ion-button (click)="showdata()" expand="block" fill="clear" shape="round">
+                            Ver Puntos
+                        </ion-button>
+                        <ion-button (click)="cleardata()" expand="block" fill="clear" shape="round">
+                            Borrar Puntos
+                        </ion-button>
+                    </ion-item> -->
+                </ion-card-content>
+            </ion-card>
+        </ion-slide>
+    </ion-slides>
+    <!-- <ion-list *ngIf="!datais">
+        <ion-item *ngFor="let item of puntos">
+            <ion-label>{{item.longitud}} , {{item.latitud}}</ion-label>
+        </ion-item>
+    </ion-list> -->
+</ion-content>

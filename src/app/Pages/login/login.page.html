@@ -1,0 +1,74 @@
+<ion-content class="bg-class">
+    <ion-grid fixed style="height: 100%;">
+        <ion-row style="height: 20%;">
+            <ion-col size="12">
+                <img src="/assets/Imagenes/Portadas/logo.png " class="logo center animated fadeIn fast ">
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col size="12">
+                <form #formLogin="ngForm" (ngSubmit)="loginSubmited(formLogin)">
+                    <ion-card class="center">
+                        <ion-card-header class="container" color="encabezado" style="text-align: center;">
+                            <ion-label class="animated fadeIn fast">
+                                <h1><strong>Iniciar Sesión</strong></h1>
+                            </ion-label>
+                        </ion-card-header>
+                        <ion-card-content>
+                            <ion-item no-padding class="animated fadeIn fast">
+                                <ion-label position="floating ">
+                                    <ion-icon slot="start" name="mail"></ion-icon>
+                                    Correo
+                                </ion-label>
+                                <ion-input style="text-transform:lowercase;" #email="ngModel" name="email" required pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$" [(ngModel)]="usuario.email" type="email "></ion-input>
+                                <ion-badge slot="end" *ngIf="formLogin.submitted && email.errors?.required" color="danger">*</ion-badge>
+                                <ion-badge slot="end" *ngIf="formLogin.submitted && email.errors?.pattern" color="danger">No Válido</ion-badge>
+                            </ion-item>
+
+                            <ion-item no-padding class="animated fadeIn fast " *ngIf="!showPass">
+                                <ion-label position="floating ">
+                                    <ion-icon slot="start" name="lock-closed"></ion-icon>
+                                    Contraseña
+                                </ion-label>
+                                <ion-icon *ngIf="clave" slot="end" color="encabezado" name="eye" (click)="ShowPass()"></ion-icon>
+                                <ion-input #pass="ngModel" required name="pass" [(ngModel)]="clave" type="password" minlength="6" maxlength="16"></ion-input>
+                                <ion-badge slot="end" *ngIf="formLogin.submitted && pass.errors?.required" color="danger">*</ion-badge>
+                                <ion-badge slot="end" *ngIf="formLogin.submitted && pass.errors?.minlength" color="danger">Caracteres mínimos 6</ion-badge>
+                            </ion-item>
+                            <ion-item no-padding class="animated fadeIn fast " *ngIf="showPass">
+                                <ion-label position="floating ">
+                                    <ion-icon slot="start" name="lock-closed"></ion-icon>
+                                    Contraseña
+                                </ion-label>
+                                <ion-icon *ngIf="clave" slot="end" color="encabezado" name="eye-off" (click)="ShowPass()"></ion-icon>
+                                <ion-input #pass="ngModel" required name="pass" [(ngModel)]="clave" type="text" minlength="6" maxlength="16"></ion-input>
+                                <ion-badge slot="end" *ngIf="formLogin.submitted && pass.errors?.required" color="danger">*</ion-badge>
+                                <ion-badge slot="end" *ngIf="formLogin.submitted && pass.errors?.minlength" color="danger">Caracteres mínimos 6</ion-badge>
+                            </ion-item>
+                            <ion-checkbox #record="ngModel" [(ngModel)]="recordarme" [ngModelOptions]="{standalone: true}"></ion-checkbox>
+                            <strong><ion-label position="floating ">
+                                Recordar Usuario
+                            </ion-label></strong>
+                            <p text-right tappable class="forgot animated fadeIn fast ">
+                                <ion-text (click)="resetpass()">
+                                    <strong>¿Olvidaste tu Contraseña?</strong>
+                                </ion-text>
+                            </p>
+                            <p text-right tappable class="forgot animated fadeIn fast " routerLink="/registro">
+                                <ion-text>
+                                    <strong>Crea tu Cuenta</strong>
+                                </ion-text>
+                            </p>
+                            <ion-item lines="none">
+                                <ion-button class="animated fadeIn fast center" shape="round " type="submit">
+                                    <ion-icon slot="start" name="log-in"></ion-icon>
+                                    Ingresar
+                                </ion-button>
+                            </ion-item>
+                        </ion-card-content>
+                    </ion-card>
+                </form>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>

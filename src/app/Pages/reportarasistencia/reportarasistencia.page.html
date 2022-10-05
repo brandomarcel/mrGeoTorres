@@ -1,0 +1,71 @@
+<ion-header>
+    <ion-toolbar>
+    </ion-toolbar>
+</ion-header>
+<ion-content id="main">
+    <ion-slides class="slide-full" [options]="slideOptsOne">
+        <ion-slide>
+            <ion-card mode="ios">
+                <ion-card-header>
+                    <ion-card-title></ion-card-title>
+                </ion-card-header>
+                <ion-card-header>
+                    <ion-card-title></ion-card-title>
+                </ion-card-header>
+                <ion-card-header color="encabezado">
+                    <ion-card-title>ASISTENCIA TÉCNICA </ion-card-title>
+                </ion-card-header>
+                <ion-card-content>
+                    <form #formasistencia="ngForm" (ngSubmit)="asistenciaSubmited(formasistencia)">
+                        <ion-item>
+                            <ion-label position="floating">Título:</ion-label>
+                            <ion-input #titulo="ngModel" minlength="10" name="titulo" required [(ngModel)]="asistencia.asunto" type="text" placeholder="Título:"></ion-input>
+                            <ion-badge slot="end" *ngIf="formasistencia.submitted && titulo.errors?.required" color="danger">*</ion-badge>
+                            <ion-badge slot="end" *ngIf="formasistencia.submitted && titulo.errors?.minlength" color="danger">no válido</ion-badge>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label position="floating">Descripción:</ion-label>
+                            <ion-textarea #descripcion="ngModel" minlength="10" name="descripcion" required [(ngModel)]="asistencia.detalle" type="text" placeholder="Descripción:"></ion-textarea>
+                            <ion-badge slot="end" *ngIf="formasistencia.submitted && descripcion.errors?.required" color="danger">*</ion-badge>
+                            <ion-badge slot="end" *ngIf="formasistencia.submitted && descripcion.errors?.minlength" color="danger">no válido</ion-badge>
+                        </ion-item>
+
+                        <ion-item>
+                            <ion-label position="floating">Ubicación:</ion-label>
+                            <ion-icon slot="end" color="success" name="checkbox" *ngIf="asistencia.longitud && asistencia.latitud"></ion-icon>
+                        </ion-item>
+                        <ion-button (click)="GPSstate()">
+                            <ion-icon name="location-outline"></ion-icon>
+                        </ion-button>
+                        <br>
+                        <ion-item>
+                            <ion-label position="floating">Contacto:</ion-label>
+                            <ion-input #contacto="ngModel" maxlength="10" minlength="10" inputmode="tel" pattern="^[09]\d{9}$" name="contacto" required [(ngModel)]="asistencia.contacto" type="numberic" placeholder="Contacto:"></ion-input>
+                            <ion-badge slot="end" *ngIf="formasistencia.submitted && contacto.errors?.required" color="danger">*</ion-badge>
+                            <ion-badge slot="end" *ngIf="formasistencia.submitted && contacto.errors?.pattern" color="danger">no válido</ion-badge>
+                        </ion-item>
+                        <br>
+                        <ion-item>
+                            <ion-label>Elija su Barrio</ion-label>
+                            <ion-select name="rolempleado" [(ngModel)]="nuevorol" (change)="onChange(rolarray)">
+                              <ion-select-option value="Estacion">La Estación</ion-select-option>
+                              <ion-select-option value="Moya">La Moya</ion-select-option>
+                              <ion-select-option value="SanLuis">San Luis</ion-select-option>
+                              <ion-select-option value="CulalaAlto">Culala Alto</ion-select-option>
+                              <ion-select-option value="CulalaAlto">Culala Bajo</ion-select-option>
+                              <ion-select-option value="SanRoque">San Roque</ion-select-option>
+                              <ion-select-option value="Falcon">El Falcón</ion-select-option>
+                            </ion-select>
+                          </ion-item>
+                          <br>
+                        <ion-button type="submit " shape="round ">
+                            Ingresar
+                        </ion-button>
+                    </form>
+                </ion-card-content>
+            </ion-card>
+        </ion-slide>
+    </ion-slides>
+</ion-content>
+<ion-footer>
+</ion-footer>

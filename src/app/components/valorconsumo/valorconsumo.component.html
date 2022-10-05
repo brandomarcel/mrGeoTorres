@@ -1,0 +1,29 @@
+<ion-grid>
+    <div scrolly="true" style="max-height:500px">
+        <ion-row>
+            <ion-col *ngFor="let item of valores" size-md="6" size-lg="6" size-sm="12" size-xs="12">
+                <ion-card>
+                    <ion-card-header color="dark">
+                        <ion-card-title>Código: {{item.codigo}}
+                            <ion-icon name="receipt-outline"></ion-icon>
+                        </ion-card-title>
+                    </ion-card-header>
+                    <ion-card-content>
+                        <br>
+                        <ion-label><strong><h1>Valor a Pagar:</h1></strong></ion-label> <br>
+                        <ion-label><strong><h1>{{item.valor}} $</h1></strong></ion-label> <br>
+                        <ion-label><strong><h1>Mes de Emisión:</h1></strong></ion-label> <br>
+                        <ion-label><strong><h1>{{item.fecha}}</h1></strong></ion-label> <br>
+                    </ion-card-content>
+                    <ion-footer>
+                        <ion-toolbar color="dark">
+                            <ion-label>{{mensaje}}</ion-label><br>
+                            <ion-label>celular: {{celular}}</ion-label><br>
+                            <ion-label>teléfono: {{telefono}}</ion-label>
+                        </ion-toolbar>
+                    </ion-footer>
+                </ion-card>
+            </ion-col>
+        </ion-row>
+    </div>
+</ion-grid>

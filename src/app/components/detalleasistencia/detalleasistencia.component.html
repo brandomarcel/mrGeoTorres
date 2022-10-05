@@ -1,0 +1,34 @@
+<ion-content id="mapa-asis">
+</ion-content>
+<ion-header>
+    <ion-toolbar color="encabezado">
+        <ion-title>Detalle de la Asistencia</ion-title>
+        <ion-button (click)="cerradmodal()" color="dark" fill="clear" slot="end">
+            <ion-icon slot="start" name="close-outline"></ion-icon>
+        </ion-button>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <ion-card>
+        <ion-card-header color="dark">
+            <ion-card-title>{{asistencia.asunto}}</ion-card-title>
+            <ion-card-subtitle>{{asistencia.fecha}}</ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+            <ion-label>{{asistencia.detalle}}</ion-label>
+            <ion-item>
+                <ion-button (click)="ModalEmpleado()" color="primary">
+                    <ion-icon slot="start" name="add"></ion-icon>
+                    Asignar
+                </ion-button>
+                <ion-label slot="end">{{ tecnicoseleccionado !== undefined ? tecnicoseleccionado.nombre: ''}} {{tecnicoseleccionado !== undefined ? tecnicoseleccionado.apellido: ''}}</ion-label>
+            </ion-item>
+            <ion-item *ngIf="tecnicoseleccionado !== undefined" text-center>
+                <ion-button (click)="asignar()" class="center" color="primary">
+                    <ion-icon name="checkmark-outline"></ion-icon>
+                    Aceptar
+                </ion-button>
+            </ion-item>
+        </ion-card-content>
+    </ion-card>
+</ion-content>

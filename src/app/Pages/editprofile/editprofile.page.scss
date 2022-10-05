@@ -1,0 +1,78 @@
+.bg-class {
+    --background: linear-gradient(197deg, rgb(15, 86, 107)0%, rgb(15, 86, 107) 13.5%, rgb(128, 201, 223) 33.33%, rgb(238, 232, 232) 100%) !important;
+}
+
+.logo {
+    //  height: 15%;
+    margin-top: 2%;
+}
+
+ion-slides,
+ion-slide {
+    width: 100%;
+}
+
+.item {
+    --background: transparent;
+    --ion-color-base: transparent !important;
+}
+
+.forgot {
+    position: relative;
+    z-index: 10;
+    text-align: right;
+}
+
+ion-label {
+    color: black;
+    font-style: oblique;
+}
+
+.center {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.card {
+    background: transparent
+}
+
+ion-text {
+    color: black;
+}
+
+.slide-full {
+    height: 100% !important;
+}
+
+ion-card {
+    overflow: unset !important;
+}
+
+ion-card {
+    height: 500px;
+    width: 100%;
+    margin-right: 0px;
+    margin-left: 0px;
+}
+
+.slide-image {
+    width: 100px;
+    text-align: center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    top: -50px;
+}
+
+ion-card-header {
+    position: relative;
+    top: -50px;
+}
+
+ion-card-content {
+    position: relative;
+    top: -50px;
+}

@@ -1,0 +1,157 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title></ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-toolbar color="encabezado">
+        <ion-segment mode="ios" color="light" value="socio" (ionChange)="segmentChanged($event)">
+            <ion-segment-button color="encabezado" value="socio">
+                <ion-label style="font-size: 15px; font-weight: bold;">Empleados Socios</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="nosocio">
+                <ion-label style="font-size: 15px; font-weight: bold;">Empleados no Socios</ion-label>
+            </ion-segment-button>
+        </ion-segment>
+    </ion-toolbar>
+    <ion-slides *ngIf="socio" class="slide-full" [options]="slideOptsOne">
+        <ion-slide>
+            <ion-card mode="ios">
+                <ion-card-content>
+                    <form #formempleado="ngForm" (ngSubmit)="empleadoSubmited(formempleado)">
+                        <ion-item lines="none">
+
+                        </ion-item>
+                        <ion-item class="ion-text-center" lines="none">
+                            <ion-label><strong><h1>Ingrese el código: </h1></strong></ion-label>
+                        </ion-item>
+                        <ion-item lines="none">
+                            <ion-input #codigo="ngModel" maxlength="3" minlength="3" pattern="[0-9]{3,3}" class="inputcodigo" name="codigo" [(ngModel)]="usuario.codigo" type="numberic" required placeholder="Código:"></ion-input>
+                            <ion-badge slot="end" *ngIf="formempleado.submitted && codigo.errors?.required" color="danger">*</ion-badge>
+                            <ion-badge slot="end" *ngIf="formempleado.submitted && codigo.errors?.pattern" color="danger">no válido</ion-badge>
+                        </ion-item>
+                        <ion-list>
+                            <ion-item>
+                              <ion-label>Seleccione un tipo de empleado</ion-label>
+                              <ion-select name="rolempleado" [(ngModel)]="rolarray" (change)="onChange(rolarray)">
+                                <ion-select-option value="T">Técnico</ion-select-option>
+                                <ion-select-option value="O">Operativo</ion-select-option>
+                              </ion-select>
+                            </ion-item>
+                          
+                          </ion-list>
+                        <!-- <ion-item lines="none">
+                            <ion-label><strong><h1>Tipo de Empleado:</h1></strong></ion-label>
+                            <ion-button (click)="presentAlertCheckbox()">
+                                Seleccionar
+                            </ion-button>
+                        </ion-item> -->
+                        <ion-button shape="round" type="submit">
+                            Registrar
+                        </ion-button>
+                    </form>
+                </ion-card-content>
+            </ion-card>
+        </ion-slide>
+    </ion-slides>
+
+    
+    <ion-card mode="ios" *ngIf="!socio">
+        <ion-card-content>
+            <ion-grid fixed style="height: 100%;">
+                <ion-row>
+                    <ion-col size="12">
+                        <form #formempleadonormal="ngForm" (ngSubmit)="empleadonormalSubmited(formempleadonormal)">
+                            <ion-grid>
+                                <ion-row>
+                                    <ion-col size-md="6" size-lg="6" size-sm="12" size-xs="12">
+                                        <ion-item no-padding class="animated fadeIn fast ">
+                                            <ion-label position="floating ">
+                                                <ion-icon slot="start" name="person-add"></ion-icon>
+                                                Nombre
+                                            </ion-label>
+                                            <ion-input style="text-transform: uppercase;" #nombre="ngModel" required name="nombre" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" minlength="3" maxlength="20" [(ngModel)]="usuario.nombre" type="text"></ion-input>
+                                            <ion-badge slot="end" *ngIf="formempleadonormal.submitted && nombre.errors?.required" color="danger">*</ion-badge>
+                                            <ion-badge slot="end" *ngIf="formempleadonormal.submitted && (nombre.errors?.pattern||nombre.errors?.minlength)" color="danger">no válido</ion-badge>
+                                        </ion-item>
+                                        <ion-item no-padding class="animated fadeIn fast ">
+                                            <ion-label position="floating ">
+                                                <ion-icon slot="start" name="person-add"></ion-icon>
+                                                Apellido
+                                            </ion-label>
+                                            <ion-input style="text-transform: uppercase;" #apellido="ngModel" required name="apellido" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" minlength="3" maxlength="20" [(ngModel)]="usuario.apellido" type="text"></ion-input>
+                                            <ion-badge slot="end" *ngIf="formempleadonormal.submitted && apellido.errors?.required" color="danger">*</ion-badge>
+                                            <ion-badge slot="end" *ngIf="formempleadonormal.submitted && (apellido.errors?.pattern||apellido.errors?.minlength)" color="danger">no válido</ion-badge>
+                                        </ion-item>
+                                        <ion-item no-padding class="animated fadeIn fast ">
+                                            <ion-label position="floating ">
+                                                <ion-icon slot="start" name="mail"></ion-icon>
+                                                Correo
+                                            </ion-label>
+                                            <ion-input #email="ngModel" name="email" required pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$" [(ngModel)]="usuario.email" type="email "></ion-input>
+                                            <ion-badge slot="end" *ngIf="formempleadonormal.submitted && email.errors?.required" color="danger">*</ion-badge>
+                                            <ion-badge slot="end" *ngIf="formempleadonormal.submitted && email.errors?.pattern" color="danger">no Válido</ion-badge>
+                                        </ion-item>
+                                    </ion-col>
+                                    <ion-col size-md="6" size-lg="6" size-sm="12" size-xs="12">
+                                        <ion-item no-padding class="animated fadeIn fast ">
+                                            <ion-label position="floating ">
+                                                <ion-icon slot="start" name="card"></ion-icon>
+                                                Cédula
+                                            </ion-label>
+                                            <ion-input #ci="ngModel" required name="ci" [(ngModel)]="usuario.cedula" type="text" minlength="10" maxlength="10"></ion-input>
+                                            <ion-badge slot="end" *ngIf="formempleadonormal.submitted && ci.errors?.required" color="danger">*</ion-badge>
+                                            <ion-badge slot="end" *ngIf="formempleadonormal.submitted && ci.errors?.minlength" color="danger">mínimo 10 caracteres</ion-badge>
+                                        </ion-item>
+                                        <ion-item no-padding lines="none" class="animated fadeIn fast ">
+                                            <ion-radio-group #genero="ngModel" required name="genero" [(ngModel)]="usuario.genero">
+                                                <ion-label position="floating ">
+                                                    <ion-icon slot="start" name="people"></ion-icon>
+                                                    Género
+                                                </ion-label>
+                                                <br>
+                                                <ion-item lines="none">
+                                                    <ion-label>Hombre</ion-label>
+                                                    <ion-radio value="H"></ion-radio>
+                                                </ion-item>
+
+                                                <ion-item lines="none">
+                                                    <ion-label>Mujer</ion-label>
+                                                    <ion-radio value="M"></ion-radio>
+                                                </ion-item>
+                                            </ion-radio-group>
+                                        </ion-item>
+                                        <ion-list>
+                                            <ion-item>
+                                              <ion-label>Seleccione un tipo de empleado</ion-label>
+                                              <ion-select name="rolempleado" [(ngModel)]="rolarray" (change)="onChange(rolarray)">
+                                                <ion-select-option value="T">Técnico</ion-select-option>
+                                                <ion-select-option value="O">Operativo</ion-select-option>
+                                              </ion-select>
+                                            </ion-item>
+                                          
+                                          </ion-list>
+                                        <!-- <ion-item lines="none">
+                                            <ion-label>Tipo de Empleado:</ion-label>
+                                            <ion-button (click)="presentAlertCheckbox()">
+                                                Seleccionar
+                                            </ion-button>
+                                        </ion-item> -->
+                                    </ion-col>
+                                </ion-row>
+                                <ion-row>
+                                    <ion-col size="12" class="ion-text-center">
+                                        <ion-button shape="round" type="submit">
+                                            Resistrar
+                                        </ion-button>
+                                    </ion-col>
+                                </ion-row>
+                            </ion-grid>
+                        </form>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </ion-card-content>
+    </ion-card>
+</ion-content>

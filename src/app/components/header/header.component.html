@@ -1,0 +1,24 @@
+<ion-header *ngIf="cargando">
+    <ion-toolbar>
+        <ion-buttons>
+            <app-menu-button menu="primero"></app-menu-button>
+            <img *ngIf="!dispositivo" (click)="logoclick()" (click)="doRefresh($event)" src="/assets/Imagenes/Portadas/logo.png " class="logoheader center animated fadeIn fast ">
+            <img *ngIf="dispositivo && conectado" (click)="logoclick()" (click)="doRefresh($event)" src="/assets/Imagenes/gotasagua.svg " class="logoheaderandroid animated fadeIn fast ">
+            <img *ngIf="dispositivo && !conectado" (click)="logoclick()" (click)="doRefresh($event)" src="/assets/Imagenes/gotasaguaroja.svg " class="logoheaderandroid animated fadeIn fast ">
+        </ion-buttons>
+        <ion-chip slot="end" (click)="presentPopover($event)">
+            <ion-label class="colorlabelchip">{{nombre}} {{apellido}}</ion-label>
+            <ion-avatar>
+                <img [src]="image">
+            </ion-avatar>
+        </ion-chip>
+    </ion-toolbar>
+</ion-header>
+<ion-header *ngIf="!cargando">
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-skeleton-text animated slot="end" style="width: 200px; height: 35px;"></ion-skeleton-text>
+    </ion-toolbar>
+</ion-header>

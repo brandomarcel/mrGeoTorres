@@ -1,0 +1,35 @@
+<!-- <app-header></app-header> -->
+<app-header></app-header>
+<ion-split-pane contentId="principal" when="md">
+    <ion-menu side="start" menuId="primero" contentId="principal">
+        <ion-header>
+            <ion-toolbar>
+                <ion-title></ion-title>
+            </ion-toolbar>
+        </ion-header>
+        <ion-content>
+            <ion-list>
+                <!-- añadir esto para que se visualice el menu -->
+                <ion-menu-toggle autoHide="false">
+                    <ion-item color="dark">
+                        <ion-label>
+                            <strong>Menú Principal</strong>
+
+                        </ion-label>
+                        <ion-icon slot="start" name="list-outline"></ion-icon>
+                    </ion-item>
+                    <ion-item color="dark" *ngFor="let item of menuOpts" [routerLink]="item.redirect" detail>
+                        <ion-label>
+                            <strong>{{item.item}}</strong>
+
+                        </ion-label>
+                        <ion-icon slot="start" [name]="item.icono"></ion-icon>
+                    </ion-item>
+                </ion-menu-toggle>
+            </ion-list>
+        </ion-content>
+    </ion-menu>
+    <!-- <app-menu></app-menu> -->
+    <ion-router-outlet id="principal"></ion-router-outlet>
+    <!-- <<ion-router-outlet name="segundo"></ion-router-outlet> -->
+</ion-split-pane>
